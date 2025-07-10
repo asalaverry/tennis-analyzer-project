@@ -102,18 +102,12 @@ class CourtDetector:
         # Detect all lines
         lines = cv2.HoughLinesP(gray, 1, np.pi / 180, 80, minLineLength=minLineLength, maxLineGap=maxLineGap)
         lines = np.squeeze(lines)
-        if self.verbose:
-            display_lines_on_frame(self.frame.copy(), [], lines)
-
+        
         # Classify the lines using their slope
         horizontal, vertical = self._classify_lines(lines)
-        if self.verbose:
-            display_lines_on_frame(self.frame.copy(), horizontal, vertical)
 
         # Merge lines that belong to the same line on frame
         horizontal, vertical = self._merge_lines(horizontal, vertical)
-        if self.verbose:
-            display_lines_on_frame(self.frame.copy(), horizontal, vertical)
 
         return horizontal, vertical
 

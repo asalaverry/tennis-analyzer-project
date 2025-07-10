@@ -1,10 +1,9 @@
-import matplotlib.pyplot as plt
 import numpy as np
 from scipy import signal
 from scipy.interpolate import interp1d
 from scipy.signal import find_peaks
 
-from detection import DetectionModel, center_of_box
+from detection import center_of_box
 
 def find_strokes_indices(player_1_boxes, ball_positions):
     """
@@ -66,9 +65,6 @@ def find_strokes_indices(player_1_boxes, ball_positions):
     # Ajusta los parámetros 'height' y 'distance' según la respuesta típica de tus videos
     # height: umbral mínimo para considerar un pico de aceleración
     # distance: mínima distancia entre picos de aceleración para evitar múltiples detecciones del mismo golpe
-    
-    # Los valores de 'height' y 'distance' son CRÍTICOS y necesitan ajuste empírico.
-    # Comienza con valores pequeños y auméntalos gradualmente.
     ACCEL_PEAK_HEIGHT = np.percentile(acceleration_magnitude[~np.isnan(acceleration_magnitude)], 80) # DEFAULT: el 90 percentil de las aceleraciones
     ACCEL_PEAK_DISTANCE = 6 # DEFAULT: Mínimo 10 frames entre picos fuertes de aceleración
 
@@ -95,9 +91,7 @@ def find_strokes_indices(player_1_boxes, ball_positions):
 
     strokes_1_indices = []
     
-    # Umbral de proximidad de la pelota al jugador
-    # Nuevamente, este umbral es CRÍTICO. Un valor típico podría ser 100-200 píxeles,
-    # o basado en la altura de la caja del jugador.
+    # Umbral de proximidad de la pelota al jugador. Valor típico podría ser 100-200 píxeles, o basado en la altura de la caja del jugador.
     PLAYER_PROXIMITY_THRESHOLD = 220 # DEFAULT: 150
 
     # Iterar sobre los candidatos a golpe (donde hubo alta aceleración)
@@ -161,27 +155,19 @@ def find_strokes_indices(player_1_boxes, ball_positions):
     return strokes_1_indices
 
 
-
-
-
-
 def detect_type_of_stroke (player_1_boxes, ball_positions, stroke_1_indices):
     strokes_types = {}
 
     ball_positions_np = np.asarray(ball_positions) #convierto a numpy array
 
     # Umbral para Smash/Saque: Ajusta este valor según tus videos.
-    # Por ejemplo, la pelota está a una altura Y menor (más arriba en la imagen) que la parte superior de la cabeza del jugador
-    # menos una cierta cantidad de píxeles.
-    # O, una proporción de la altura de la caja del jugador por encima de su cabeza.
     # Un valor fijo (ej: 50 píxeles por encima de la cabeza) puede ser más estable si la perspectiva es fija.
     SMASH_SERVE_HEIGHT_OFFSET = 20 # Píxeles por encima de la cabeza del jugador para considerarlo un smash/saque.
 
     # Umbral de tolerancia horizontal para Smash/Saque:
     # Si la pelota está más lejos de este valor (en X) del centro del jugador, NO es un smash.
     # Por ejemplo, 0.2 significa que la pelota debe estar dentro del 20% del ancho del jugador (aproximado).
-    # Un valor absoluto en píxeles (e.g., 50 píxeles a cada lado del centro) también es una opción.
-    SMASH_HORIZONTAL_TOLERANCE_FACTOR = 1 # Por ejemplo, 50% del ancho del jugador
+    SMASH_HORIZONTAL_TOLERANCE_FACTOR = 1
 
     for frame_idx in stroke_1_indices:
         # 1. Obtener la caja del jugador y la posición de la pelota para el frame del golpe

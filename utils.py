@@ -51,11 +51,3 @@ def str2bool(v):
         return False
     else:
         raise argparse.ArgumentTypeError('Boolean value expected.')
-
-
-def get_stickman_line_connection():
-    # stic kman line connection with keypoints indices for R-CNN
-    line_connection = [
-        (7, 9), (7, 5), (10, 8), (8, 6), (6, 5), (15, 13), (13, 11), (11, 12), (12, 14), (14, 16), (5, 11), (12, 6)
-    ]
-    return line_connection

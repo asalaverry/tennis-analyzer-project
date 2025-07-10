@@ -1,14 +1,10 @@
-import argparse
 import queue
 import pandas as pd 
 from collections import Counter
-import imutils
 import os
 from PIL import Image, ImageDraw
 import cv2 
 import numpy as np
-import torch
-import sys
 import time
 import matplotlib.pyplot as plt
 
@@ -203,7 +199,6 @@ def _run_analysis(input_path):
       #output_video.write(img)
       frames_w_ball.append(img)
 
-
   print("Parte 2 finalizada")
 
 
@@ -243,11 +238,6 @@ def _run_analysis(input_path):
             cv2.putText(img_wStroke, stroke_type_text,
                         (int(player1_boxes[currentFrame][0]) - 10, int(player1_boxes[currentFrame][1]) + 20), # 20 píxeles más abajo
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 255) if i != 0 else (255, 0, 0), 2)
-
-        '''if currentFrame + i in p2: #Si se quiere marcar los golpes del jugador 2
-            cv2.putText(img_wStroke, 'Stroke detected',
-                        (int(f_x(currentFrame)) - 30, int(f_y(currentFrame)) - 50),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 255) if i != 0 else (255, 0, 0), 2)''' 
 
       output_video.write(img_wStroke)
 
@@ -415,7 +405,6 @@ def generar_estadisticas(strokes_counts, output_dir="temp"): #Genera los gráfic
     plt.figure(figsize=(6, 4)) 
     bars = plt.bar(labels_bar, counts_bar_for_plot, color=colors_bar) # Guardamos la referencia a las barras
 
-    # --- MODIFICACIONES PARA EL EJE Y ---
     plt.ylim(0, 5) # Establecer el rango del eje Y de 0 a 5
     # Establecer los ticks discretos del eje Y en 0, 1, 2, 3, 4, 5
     plt.yticks(np.arange(0, 6, 1), color='white', fontname='Arial') 
@@ -430,7 +419,6 @@ def generar_estadisticas(strokes_counts, output_dir="temp"): #Genera los gráfic
     plt.gcf().patch.set_alpha(0.0) 
 
     # --- Añadir etiquetas numéricas encima de cada barra ---
-    # Usaremos los valores originales (1 y 0) para estas etiquetas.
     original_bar_counts = [unforced_errors, winners]
     for i, bar in enumerate(bars):
         yval = bar.get_height()
@@ -462,7 +450,6 @@ def generar_estadisticas(strokes_counts, output_dir="temp"): #Genera los gráfic
     labels_pie2 = ['Errores con Drive', 'Errores con Reves']
     original_error_counts = [drive_errors, backhand_errors] # Guardamos los conteos originales
 
-    # --- CAMBIOS AQUÍ para el gráfico de Errores por Tipo de Golpe ---
     # 1. Preparar los tamaños para el ploteo: si el original es 0, usamos 0.001 para que se dibuje.
     sizes_pie2_for_plot = [max(val, 0.002) for val in original_error_counts] 
     
@@ -510,9 +497,3 @@ def generar_estadisticas(strokes_counts, output_dir="temp"): #Genera los gráfic
         'errors_by_stroke_chart': errors_by_stroke_chart_path
     }
 
-def main():
-    
-    # Estos valores serían temporales, de prueba
-    input_path = "VideoInput/video_input11.mp4"
-
-    _run_analysis(input_path)
