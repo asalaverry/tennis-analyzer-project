@@ -45,7 +45,7 @@ _Ahora mismo el proyecto se encuentra en desarrollo, y muchas de estas funciones
 - Mejorar deteccion de pique 
 - Deteccion de momentos de partido (Cuando la pelota esta en juego y cuando no)
 
-![Demo de uso](assets/demo_video.gif)
+![example](https://github.com/user-attachments/assets/75fff057-ce94-4410-9f3c-0d45936c0f1e)
 
 ## Repositorios que Fueron de Ayuda
 * **[ArtLabss/tennis-tracking](https://github.com/ArtLabss/tennis-tracking)**
