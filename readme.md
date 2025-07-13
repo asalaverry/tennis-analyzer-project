@@ -45,7 +45,7 @@ _Ahora mismo el proyecto se encuentra en desarrollo, y muchas de estas funciones
 - Mejorar deteccion de pique 
 - Deteccion de momentos de partido (Cuando la pelota esta en juego y cuando no)
 
-![Demostración de la Aplicación Tennis Match Analyzer](assets/demo_video.gif)
+![Demo de uso](assets/demo_video.gif)
 
 ## Repositorios que Fueron de Ayuda
 * **[ArtLabss/tennis-tracking](https://github.com/ArtLabss/tennis-tracking)**
