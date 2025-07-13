@@ -6,7 +6,9 @@
 
 El proyecto está diseñado para procesar secuencias de video, detectando los golpes del jugador, el movimiento, y el pique de la pelota. Luego se presenta un resumen estadístico y visual del desempeño, facilitando el análisis táctico y la revisión post-partido. 
 
-## Características del proyecto
+_Este proyecto fue hecho como entrega para un trabajo universitario. No se si continuare trabajando en el, pero todo aporte es bienvenido_
+
+## Características del Proyecto
 
 * **Análisis Automático de Golpes:** La idea del proyecto, es que a partir del seguimiento de la pelota de tenis y la deteccion de los jugadores y cancha, podemos obtener muchos datos interesantes, como el tipo de golpe realizado, la direccion (Paralelo o cruzado) y si fue punto o no.  
 Con esta informacion, se pueden extraer una gran variedad de estadisticas, que pueden ser muy utiles para analizar los patrones de juego de un tenista, y buscar los puntos debiles y fuertes de un rival o propios.  
@@ -18,13 +20,32 @@ _Ahora mismo el proyecto se encuentra en desarrollo, y muchas de estas funciones
 ## Tecnologías Utilizadas
 
 * **Python:** Lenguaje de programación principal.
-* **CustomTkinter:** Framework para la construcción de la interfaz gráfica (GUI) moderna.
+* **CustomTkinter:** Framework para la construcción de la interfaz gráfica (GUI).
 * **YOLO:** Para la detección de objetos y el seguimiento en el video.
 * **Numpy:** Para operaciones numéricas eficientes y manejo de datos.
 * **Pandas:** Para el análisis y manipulación de datos estadísticos.
-* **Matplotlib:** Para la generación de gráficos estadísticos (PNGs).
-* **Pillow (PIL):** Utilizado para el manejo de imágenes, incluyendo la carga de gráficos y el establecimiento del icono de la aplicación.
-* **OpenCV (cv2):** (Si se implementó el procesamiento de video) Para la lectura, procesamiento y análisis del video.
+* **Matplotlib:** Para la generación de gráficos estadísticos.
+* **Pillow (PIL):** Utilizado para el manejo de imágenes.
+* **OpenCV (cv2):** Para la lectura, procesamiento y análisis del video.
 
-## Creditos
-* **OpenCV (cv2):** (Si se implementó el procesamiento de video) Para la lectura, procesamiento y análisis del video.
+## Status del Proyecto
+
+**DONE**  
+- Deteccion de posicion de jugador
+- Deteccion de cancha
+- Deteccion de pelota y piques
+- Deteccion de golpe y tipo de golpe (Drive, reves, smash/saque)
+- Interfaz de usuario y estadisticas
+
+**TO DO**
+- Deteccion de voleas
+- Deteccion de direccion de golpe
+- Deteccion de si es punto o no (Y razon de "no punto")
+- Mejorar algoritmo de deteccion de golpe y tipo de golpe
+- Mejorar deteccion de pique 
+- Deteccion de momentos de partido (Cuando la pelota esta en juego y cuando no)
+
+## Repositorios que Fueron de Ayuda
+* **[ArtLabss/tennis-tracking](https://github.com/ArtLabss/tennis-tracking)**
+* **[yastrebksv/TrackNet](https://github.com/yastrebksv/TrackNet)**
+* **[avivcaspi/TennisProject](https://github.com/avivcaspi/TennisProject)**
